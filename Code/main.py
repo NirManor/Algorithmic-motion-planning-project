@@ -8,7 +8,8 @@ import numpy as np
 from inverse_kinematics import Inverse_Kinematics
 
 
-
+# TODO change the sine wave waypoints to a feasible line in the environment because now it's not feasible
+# Sampling Sine wave for testing the path creation mechanism
 def create_sine_wave_waypoints(num_points=100, amplitude=5, frequency=1, length=10):
     """Generate waypoints along a sine wave in 3D."""
     x = np.linspace(0, length, num_points)
@@ -52,7 +53,7 @@ def main():
     for layer_index, configurations in enumerate(ik_solutions_per_layer):
         graph.add_layer(configurations)
         graph.connect_layers(bb, layer_index)
-
+# TODO create Dijkstra algorithm to find an optimal path
 
 
 

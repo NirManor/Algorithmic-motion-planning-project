@@ -86,13 +86,28 @@ class Building_Blocks(object):
         @param prev_conf - some configuration
         @param current_conf - current configuration
         '''
-        # TODO 
+
         # Generate intermediate configurations between prev_conf and current_conf
         dist_prev_curr = np.linalg.norm(current_conf - prev_conf)
         num_intermediate_configs = max(int(np.ceil(dist_prev_curr / self.resolution)), MIN_RESOLUTION)
         intermediate_configs = np.linspace(prev_conf, current_conf, num_intermediate_configs)
 
-        # Check for collisions in intermediate configurations
+        # TODO Calculate distance from the path and return it as well
+
+        # for config in intermediate_configs:
+        #     if self.is_in_collision(config):
+        #         return False
+        #
+        #     # Compute end effector position using forward kinematics from Inverse_Kinematics
+        #     transformation_matrix = self.inverse_kinematics.forward_kinematic_solution(
+        #         self.inverse_kinematics.DH_matrix_UR5e, config)
+        #     end_effector_pos = transformation_matrix[:3, 3]  # Assuming the position is in the last column
+        #
+        #     # Calculate distance from the path
+        #     if compute_closest_point_on_path(end_effector_pos, splines) > self.resolution:
+        #         return False
+
+        # # Check for collisions in intermediate configurations
         return not any(self.is_in_collision(config) for config in intermediate_configs)
     
     def edge_cost(self, conf1, conf2):
